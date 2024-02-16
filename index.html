@@ -83,19 +83,28 @@
 
       
       /* Additional custom styles */
+/* Additional custom styles */
 .timeline-content {
-    display: flex;
-    justify-content: space-between; /* Align items with space between them */
-  }
-  
-  .education-details {
-    flex-grow: 1; /* Make the details take remaining space */
-  }
-  
+  display: flex;
+  justify-content: space-between; /* Align items with space between them */
+}
+
+.education-details {
+  flex-grow: 1; /* Make the details take remaining space */
+}
+
+.university-logo {
+  width: auto; /* Adjust the width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .university-logo {
-    width: auto; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
+    max-width: 100px; /* Adjust the max-width for smaller screens */
   }
+}
+
   
   
   </style>
