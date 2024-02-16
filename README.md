@@ -1,6 +1,6 @@
 # Welcome to My GitHub Profile! 👋
 
-## Arjun Sharma - Data Analyst & Web Developer
+## Arjun Sharma - Data Science Enthusiast 
 
 Hello! I'm Arjun, a Data Analyst and Web Developer from Indore, Madhya Pradesh. I combine my passion for data and web technologies to create insightful data visualizations and user-friendly web applications.
 
