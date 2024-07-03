@@ -76,12 +76,54 @@
         font-style: italic;
         text-align: center;
       }
+      .card {
+        background-color: #eee9e9;
+        border: none;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+        padding-top: 10px;
+      }
       .card:hover {
         transform: translateY(-5px);
-        transition: all 0.3s ease;
+      }
+      .card-body {
+        text-align: left;
+      }
+      .card-title {
+        color: #030303;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .nav-tabs .nav-link {
+        color: #ffcc00;
+      }
+      .nav-tabs .nav-link.active {
+        background-color: #1e1e1e;
+        color: #ffcc00;
+        border: none;
+      }
+      .btn-primary {
+        background-color: #ffcc00;
+        border: none;
+        color: #121212;
       }
 
-      
+      .more-btn {
+        display: block;
+        margin: 20px auto;
+        background-color: #ffcc00;
+        color: #121212;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .tab-content{
+        
+        margin-top: 30px;
+      }
+
+
       /* Additional custom styles */
 /* Additional custom styles */
 .timeline-content {
@@ -188,48 +230,111 @@
   
 
   <!-- Projects Section -->
-  <section id="projects" class="py-5 bg-light">
+  <!-- Projects Section -->
+  <section id="projects" class="py-5">
     <div class="container">
       <h2 class="text-center mb-4">Projects🧑🏻‍💻</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card mb-4">
-            <div class="card-body">
-            
-              <h5 class="card-title" href="google.com">🧑🏻‍💻Falcon 9 First Stage Landing Prediction</h5>
-              <p class="card-text">Description of the project...</p>
-            </div>
+      <div class="projects-tabs">
+        <ul class="nav nav-tabs justify-content-center" id="projectTabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab">All</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="eda-tab" data-toggle="tab" href="#eda" role="tab">EDA</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="sql-tab" data-toggle="tab" href="#sql" role="tab">SQL</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="powerbi-tab" data-toggle="tab" href="#powerbi" role="tab">PowerBI</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="tableau-tab" data-toggle="tab" href="#tableau" role="tab">Tableau</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="projectTabContent">
+          <div class="tab-pane fade show active" id="all" role="tabpanel">
+            <div class="row" id="all-container"></div>
+          </div>
+          <div class="tab-pane fade" id="eda" role="tabpanel">
+            <div class="row" id="eda-container"></div>
+          </div>
+          <div class="tab-pane fade" id="sql" role="tabpanel">
+            <div class="row" id="sql-container"></div>
+          </div>
+          <div class="tab-pane fade" id="powerbi" role="tabpanel">
+            <div class="row" id="powerbi-container"></div>
+          </div>
+          <div class="tab-pane fade" id="tableau" role="tabpanel">
+            <div class="row" id="tableau-container"></div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="card mb-4">
-            <div class="card-body">
-              <h5 class="card-title">Google Play Store Apps Analysis</h5>
-              <p class="card-text">Description of the project...</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card mb-4">
-              <div class="card-body">
-                <h5 class="card-title">Google Play Store Apps Analysis</h5>
-                <p class="card-text">Description of the project...</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="card mb-4">
-              <div class="card-body">
-                <h5 class="card-title">Google Play Store Apps Analysis</h5>
-                <p class="card-text">Description of the project...</p>
-              </div>
-            </div>
-          </div>
       </div>
+      <div class="tab-content" id="projectTabContent">
+        <div class="tab-pane fade show active" id="all" role="tabpanel">
+          <div class="row" id="all-container"></div>
+          <button class="more-btn" id="load-more-all">Display more...</button>
+        </div>
+        <div class="tab-pane fade" id="eda" role="tabpanel">
+          <div class="row" id="eda-container"></div>
+          <button class="more-btn" id="load-more-eda">Display more...</button>
+        </div>
+        <div class="tab-pane fade" id="sql" role="tabpanel">
+          <div class="row" id="sql-container"></div>
+          <button class="more-btn" id="load-more-sql">Display more...</button>
+        </div>
+        <div class="tab-pane fade" id="powerbi" role="tabpanel">
+          <div class="row" id="powerbi-container"></div>
+          <button class="more-btn" id="load-more-powerbi">Display more...</button>
+        </div>
+        <div class="tab-pane fade" id="tableau" role="tabpanel">
+          <div class="row" id="tableau-container"></div>
+          <button class="more-btn" id="load-more-tableau">Display more...</button>
+        </div>
     </div>
   </section>
+
+
+  <!-- PowerBI Dashboards Section -->
+<!-- <section id="powerbi-dashboards" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">PowerBI Dashboards</h2>
+    <div class="row" id="powerbi-dashboard-container">
+      <!-- PowerBI dashboard cards will be inserted here -->
+    <!-- </div>
+  </div>
+</section> -->
+
+<!-- Tableau Dashboards Section -->
+<!-- <section id="tableau-dashboards" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Tableau Dashboards</h2>
+    <div class="row" id="tableau-dashboard-container">
+     
+    </div>
+  </div>
+</section> --> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 
@@ -247,61 +352,12 @@
   <!-- Education Section -->
   <section id="education" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Education🧮</h2>
-        <div class="timeline">
-          <!-- University Institute of Technology Bhopal -->
-          <div class="timeline-item">
-            <div class="timeline-content">
-              <div class="education-details">
-                <h3>IIT Guwahati Certification in Full Stack Data Science and AI</h3>
-                <p>Almabetter 👨🏿‍💻</p>
-                <h8>01/2024-06-2024</h8>
-                <p>Percentage: 86% (2020-2022)</p>
-              </div>
-              <img src="alma.jpeg" alt="University Logo" class="university-logo">
-            </div>
-          </div>
-          <!-- Add more education entries as needed -->
-        </div>
-
-        <div class="timeline">
-            <!-- University Institute of Technology Bhopal -->
-            <div class="timeline-item">
-              <div class="timeline-content">
-                <div class="education-details">
-                  <h3>M.C.A(computer science) 🎮🕹️👾</h3>
-                  <p>University Institute of Technology Bhopal</p>
-                  <h8>2020-2022</h8>
-                  <p>Percentage: 86% (2020-2022)</p>
-                </div>
-                <img src="bark.jpeg" alt="University Logo" class="university-logo">
-              </div>
-            </div>
-            <!-- Add more education entries as needed -->
-          </div>
-
-          <div class="timeline">
-            <!-- University Institute of Technology Bhopal -->
-            <div class="timeline-item">
-              <div class="timeline-content">
-                <div class="education-details">
-                  <h3>B.Sc(computer science)👨🏻‍🏫</h3>
-                  <p>Barkatullha University Bhopal</p>
-                  <h8>2017-2020</h8>
-                  <p>Percentage: 86% (2020-2022)</p>
-                </div>
-                <img src="uni.jpeg" alt="University Logo" class="university-logo">
-              </div>
-            </div>
-            <!-- Add more education entries as needed -->
-          </div>
-
-        
-        <!-- Add more education entries as needed -->
+      <h2 class="text-center mb-4">Education🎓</h2>
+      <div class="row" id="education-container">
+        <!-- Education cards will be appended here by JavaScript -->
       </div>
     </div>
   </section>
-
   
 
    <!-- Certificate and Achievement Section -->
@@ -461,9 +517,105 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
   
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $.getJSON('projects.json', function(data) {
+        var projects = data.sort((a, b) => a.serial - b.serial);
+        var categories = ["all", "EDA", "SQL", "PowerBI", "Tableau"];
+        var initialLoad = 6;
+        
+        function displayProjects(container, category) {
+          var filteredProjects = projects.filter(function(project) {
+            return category === "all" || project.category.toLowerCase() === category.toLowerCase();
+          });
+
+          var currentIndex = 0;
+
+          function loadMore() {
+            var endIndex = currentIndex + initialLoad;
+            var projectsToDisplay = filteredProjects.slice(currentIndex, endIndex);
+
+            projectsToDisplay.forEach(function(project) {
+              var projectCard = `
+                <div class="col-md-4 mb-4">
+                  <div class="card project-card">
+                    <div class="card-body">
+                      <h5 class="card-title">${project.title}</h5>
+                      <p class="card-text">${project.description}</p>
+                      <a href="${project.link}" class="btn btn-primary" target="_blank">View Project</a>
+                    </div>
+                  </div>
+                </div>
+              `;
+              $(`#${container}-container`).append(projectCard);
+            });
+
+            currentIndex = endIndex;
+            if (currentIndex >= filteredProjects.length) {
+              $(`#load-more-${container}`).hide();
+            }
+          }
+
+          loadMore();
+          $(`#load-more-${container}`).click(loadMore);
+        }
+
+        categories.forEach(function(category) {
+          displayProjects(category.toLowerCase(), category);
+        });
+      });
+    });
+  </script>
+
+    <!-- Existing scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        const educationData = [
+        {
+          "institution": " Full Stack Data Science Course",
+          "degree": "IIT Gauhati + Almabetter",
+          
+          "year": "2024",
+          "description": "Studied software development, algorithms, and computer systems."
+        },  
+        {
+            "institution": "University Institude Of Technology Bhopal",
+            "degree": "Master of Computer Application",
+            "year": "2022",
+            "description": "Focused on machine learning, data analysis, and big data technologies."
+          },
+          {
+            "institution": "Barkatullaha UNiversity bhopal ",
+            "degree": "Bachelor of Science( Computer Science)",
+            "year": "2020",
+            "description": "Studied software development, algorithms, and computer systems."
+          }
+          
+          // Add more education entries here
+        ];
+  
+        educationData.forEach(function(education) {
+          const educationCard = `
+            <div class="col-md-6 mb-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">${education.degree}</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">${education.institution}</h6>
+                  <p class="card-text">${education.description}</p>
+                  <p class="card-text"><small class="text-muted">${education.year}</small></p>
+                </div>
+              </div>
+            </div>
+          `;
+          $('#education-container').append(educationCard);
+        });
+      });
+    </script>
 
 
 
