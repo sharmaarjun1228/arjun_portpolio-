@@ -501,150 +501,123 @@
   <div id="visitor-count" style="text-align: left; padding: 20px; background-color: #1e1e1e; color: #ffcc00;  bottom: 0; width:200px">
     Total Visits: <span id="visit-count"></span>
   </div>
-   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function () {
+  // Close the navbar on link click (for mobile)
+  $(".navbar-collapse a").click(function () {
+    $(".navbar-collapse").collapse('hide');
+  });
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  // Load projects dynamically from projects.json
+  $.getJSON('projects.json', function (data) {
+    var projects = data.sort((a, b) => a.serial - b.serial);
+    var categories = ["all", "EDA", "SQL", "PowerBI", "Tableau"];
+    var initialLoad = 6; // Number of projects to initially load
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      $.getJSON('projects.json', function(data) {
-        var projects = data.sort((a, b) => a.serial - b.serial);
-        var categories = ["all", "EDA", "SQL", "PowerBI", "Tableau"];
-        var initialLoad = 6;
-        
-        function displayProjects(container, category) {
-          var filteredProjects = projects.filter(function(project) {
-            return category === "all" || project.category.toLowerCase() === category.toLowerCase();
-          });
-
-          var currentIndex = 0;
-
-          function loadMore() {
-            var endIndex = currentIndex + initialLoad;
-            var projectsToDisplay = filteredProjects.slice(currentIndex, endIndex);
-
-            projectsToDisplay.forEach(function(project) {
-              var projectCard = `
-                <div class="col-md-4 mb-4">
-                  <div class="card project-card">
-                    <div class="card-body">
-                      <h5 class="card-title">${project.title}</h5>
-                      <p class="card-text">${project.description}</p>
-                      <a href="${project.link}" class="btn btn-primary" target="_blank">View Project</a>
-                    </div>
-                  </div>
-                </div>
-              `;
-              $(`#${container}-container`).append(projectCard);
-            });
-
-            currentIndex = endIndex;
-            if (currentIndex >= filteredProjects.length) {
-              $(`#load-more-${container}`).hide();
-            }
-          }
-
-          loadMore();
-          $(`#load-more-${container}`).click(loadMore);
-        }
-
-        categories.forEach(function(category) {
-          displayProjects(category.toLowerCase(), category);
-        });
+    function displayProjects(container, category) {
+      var filteredProjects = projects.filter(function (project) {
+        return category === "all" || project.category.toLowerCase() === category.toLowerCase();
       });
-    });
-  </script>
 
-  <!-- Existing scripts -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-  <script>
-    $(document).ready(function() {
-      const educationData = [
-        {
-          "institution": "University Institute Of Technology Bhopal",
-          "degree": "Master of Computer Application",
-          "year": "2022",
-          "description": "Focused on machine learning, data analysis, and big data technologies.",
-          "logo": "bark.jpeg"
-        },
-        {
-          "institution": "Barkatullah University Bhopal",
-          "degree": "Bachelor of Science (Computer Science)",
-          "year": "2020",
-          "description": "Studied software development, algorithms, and computer systems.",
-          "logo": "uni.jpeg"
-        },
-        {
-          "institution": "IIT Guwahati + Almabetter",
-          "degree": "Full Stack Data Science Course",
-          "year": "2024",
-          "description": "Studied software development, algorithms, and computer systems.",
-          "logo": "alma.jpeg"
-          
-        }
-        // Add more education entries here
-      ];
-  
-      educationData.forEach(function(education, index) {
-        const fullWidthClass = index === 2 ? 'col-md-12' : 'col-md-6'; // Making the third card full width
-        const educationCard = `
-          <div class="${fullWidthClass} mb-4">
-            <div class="card education-card">
-              <div class="card-body education-card-body">
-                <div class="education-info">
-                  <img src="${education.logo}" alt="${education.institution} Logo" class="education-institution-logo">
-                  <div>
-                    <h5 class="education-card-title">${education.degree}</h5>
-                    <h6 class="education-card-subtitle mb-2">${education.institution}</h6>
-                    <p class="card-text"><small class="text-muted">${education.year}</small></p>
-                  </div>
+      var currentIndex = 0; // Current index of projects loaded
+
+      function loadMore() {
+        var endIndex = currentIndex + initialLoad; // Determine end index
+        var projectsToDisplay = filteredProjects.slice(currentIndex, endIndex);
+
+        projectsToDisplay.forEach(function (project) {
+          var projectCard = `
+            <div class="col-md-4 mb-4">
+              <div class="card project-card">
+                <div class="card-body">
+                  <h5 class="card-title">${project.title}</h5>
+                  <p class="card-text">${project.description}</p>
+                  <a href="${project.link}" class="btn btn-primary" target="_blank">View Project</a>
                 </div>
-                <p class="card-text mt-3">${education.description}</p>
               </div>
             </div>
-          </div>
-        `;
-        $('#education-container').append(educationCard);
-      });
-    });
-  </script>
-  
+          `;
+          $(`#${container}-container`).append(projectCard);
+        });
 
-  <script>
-    // Function to update the visit count
-    function updateVisitCount() {
-      // Get the current visit count from localStorage
-      let visitCount = localStorage.getItem('visitCount');
-  
-      // If there is no visit count, initialize it to 0
-      if (!visitCount) {
-        visitCount = 0;
+        currentIndex = endIndex; // Update the current index
+
+        // Hide the "Load More" button if all projects are loaded
+        if (currentIndex >= filteredProjects.length) {
+          $(`#load-more-${container}`).hide();
+        }
       }
-  
-      // Increment the visit count
-      visitCount++;
-  
-      // Update the visit count in localStorage
-      localStorage.setItem('visitCount', visitCount);
-  
-      // Display the visit count
-      document.getElementById('visit-count').textContent = visitCount;
+
+      loadMore(); // Initial load of projects
+      $(`#load-more-${container}`).click(loadMore); // Load more on button click
     }
-  
-    // Call the function to update and display the visit count
-    updateVisitCount();
-  </script>
+
+    // Display projects for each category
+    categories.forEach(function (category) {
+      displayProjects(category.toLowerCase(), category);
+    });
+  });
+
+  // Education Data - dynamically load education cards
+  const educationData = [
+    {
+      "institution": "University Institute Of Technology Bhopal",
+      "degree": "Master of Computer Application",
+      "year": "2022",
+      "description": "Focused on machine learning, data analysis, and big data technologies.",
+      "logo": "bark.jpeg"
+    },
+    {
+      "institution": "Barkatullah University Bhopal",
+      "degree": "Bachelor of Science (Computer Science)",
+      "year": "2020",
+      "description": "Studied software development, algorithms, and computer systems.",
+      "logo": "uni.jpeg"
+    },
+    {
+      "institution": "IIT Guwahati + Almabetter",
+      "degree": "Full Stack Data Science Course",
+      "year": "2024",
+      "description": "Studied software development, algorithms, and computer systems.",
+      "logo": "alma.jpeg"
+    }
+    // Add more education entries here
+  ];
+
+  // Function to load education cards
+  educationData.forEach(function (education, index) {
+    const fullWidthClass = index === 2 ? 'col-md-12' : 'col-md-6'; // Making the third card full width
+    const educationCard = `
+      <div class="${fullWidthClass} mb-4">
+        <div class="card education-card">
+          <div class="card-body education-card-body">
+            <div class="education-info">
+              <img src="${education.logo}" alt="${education.institution} Logo" class="education-institution-logo">
+              <div>
+                <h5 class="education-card-title">${education.degree}</h5>
+                <h6 class="education-card-subtitle mb-2">${education.institution}</h6>
+                <p class="card-text"><small class="text-muted">${education.year}</small></p>
+              </div>
+            </div>
+            <p class="card-text mt-3">${education.description}</p>
+          </div>
+        </div>
+      </div>
+    `;
+    $('#education-container').append(educationCard);
+  });
+
+  // Function to update and display the visit count
+  function updateVisitCount() {
+    let visitCount = localStorage.getItem('visitCount') || 0;
+    visitCount++;
+    localStorage.setItem('visitCount', visitCount);
+    document.getElementById('visit-count').textContent = visitCount;
+  }
+
+  updateVisitCount(); // Call the function to update visit count
+});
+</script >
   
 
 
